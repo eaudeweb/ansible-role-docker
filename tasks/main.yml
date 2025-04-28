@@ -10,6 +10,11 @@
       paths:
         - 'vars'
 
+- name: End the execution for hosts that do not use docker_enabled variable in host_vars configuration file
+  ansible.builtin.fail:
+    msg: "End the execution for hosts that do not use docker_enabled variable in host_vars configuration file"
+  when: not docker_enabled
+
 - include_tasks: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
 
